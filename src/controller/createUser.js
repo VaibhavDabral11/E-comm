@@ -31,13 +31,13 @@ export const createUser = async (req, res) => {
         phone,
         role,
         Timestamp: null,
-      });
+      })
       const createUser = newUser.save; //how i console the value of create user
       console.log("-----------createUser--------", createUser);
       res.json({
         status: 201,
         message: "User created successfully",
-        data: createUser,
+        data: {createUser},
       });
     }
   } catch (error) {
