@@ -7,11 +7,11 @@ export const addNewRole = async (req, res) => {
       RoleId,
       RoleName,
       Premission,
-      timestamp: null,
+      timestamp: "2025-01-26T12:34:56.789Z",
     });
-    const createRole = newRole.save;
+    const createRole = await newRole.save();
     res.json({
-      status: 401,
+      status: 200,
       message: "role is created",
       data: { createRole },
     });

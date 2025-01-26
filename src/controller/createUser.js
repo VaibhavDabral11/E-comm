@@ -1,9 +1,9 @@
 import { UserModel } from "../../models/users.js";
 export const createUser = async (req, res) => {
   try {
-    const { name, email, password, phone, role } = req.body;
+    const { name, email, password, phone, roleId } = req.body;
     const CheckExistingUser = await UserModel.findOne({ email });
-    if (!name || !email || !password || !phone || !role) {
+    if (!name || !email || !password || !phone || !roleId) {
       res.json({
         status: 400,
         message: "Empty input fields!",
@@ -29,15 +29,14 @@ export const createUser = async (req, res) => {
         email,
         password,
         phone,
-        role,
-        Timestamp: null,
-      })
-      const createUser = newUser.save; //how i console the value of create user
-      console.log("-----------createUser--------", createUser);
+        roleId,
+        Timestamp: "2025-01-26T12:34:56.789Z",
+      });
+      const createUser = await newUser.save();
       res.json({
         status: 201,
         message: "User created successfully",
-        data: {createUser},
+        data: { createUser },
       });
     }
   } catch (error) {
