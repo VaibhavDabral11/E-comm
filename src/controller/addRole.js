@@ -11,7 +11,7 @@ export const addNewRole = async (req, res) => {
     });
     const createRole = await newRole.save();
     res.json({
-      status: 200,
+      status: 201,
       message: "role is created",
       data: { createRole },
     });

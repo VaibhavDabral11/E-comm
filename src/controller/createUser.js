@@ -1,4 +1,5 @@
 import { UserModel } from "../../models/users.js";
+import bcrypt from "bcryptjs";
 export const createUser = async (req, res) => {
   try {
     const { name, email, password, phone, roleId } = req.body;
@@ -20,19 +21,21 @@ export const createUser = async (req, res) => {
       });
     } else if (CheckExistingUser) {
       return res.json({
-        status: 401, //??
+        status: 401,
         message: "User already exists",
       });
     } else {
+      const hashedPassword = await bcrypt.hash(String(password), 10);
       const newUser = new UserModel({
         name,
         email,
-        password,
+        password: hashedPassword,
         phone,
         roleId,
         Timestamp: "2025-01-26T12:34:56.789Z",
       });
       const createUser = await newUser.save();
+      // create a jwt token and according to jwt token update user
       res.json({
         status: 201,
         message: "User created successfully",
