@@ -2,6 +2,8 @@ import { UserModel } from "../../models/schema.js";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 import bcrypt from "bcryptjs";
+import { mongoose } from "mongoose";
+import { ObjectId } from "mongodb";
 dotenv.config();
 
 export const updateUser = async (req, res) => {
@@ -15,20 +17,21 @@ export const updateUser = async (req, res) => {
       });
     }
     const token = authHeader.split(" ")[1];
-    console.log("tokennnnnn", token);
-
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    console.log("--------decoded-------", decoded.userId);
-    const userId = decoded.userId;
     const hashedPassword = await bcrypt.hash(String(password), 10);
-    const user = new UserModel({
-      name,
-      email,
-      password: hashedPassword,
-      phone,
-    });
-    const updateUser = await user.updateOne(userId, user);
-    console.log("----updateUser-----", updateUser);
+    const id = new mongoose.Types.ObjectId(decoded.userId);
+    const updateUser = await UserModel.updateOne(
+      { _id: id },
+      {
+        $set: {
+          name: name,
+          email: email,
+          password: hashedPassword,
+          phone: phone,
+        },
+      }
+    );
+
     res.json({
       status: 201,
       message: "User updated successfully",
