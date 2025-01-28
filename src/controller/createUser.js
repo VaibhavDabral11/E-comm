@@ -38,19 +38,19 @@ export const createUser = async (req, res) => {
         roleId,
         Timestamp: "2025-01-26T12:34:56.789Z",
       });
-      const User = await newUser.save();
+      const user = await newUser.save();
 
-      const token = jwt.sign(
-        { userId: createUser.id },
-        process.env.JWT_SECRET || "SECRET_KEY",
-        { algorithm: "HS256", subject: String(createUser.id), expiresIn: "1d" }
-      );
+      const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET, {
+        algorithm: "HS256",
+        subject: String(user.id),
+        expiresIn: "1d",
+      });
       res.json({
         status: 201,
         message: "User created successfully",
         data: {
           token,
-          User,
+          user,
         },
       });
     }

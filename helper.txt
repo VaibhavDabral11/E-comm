@@ -13,4 +13,7 @@ mongodb github document :- https://github.com/VaibhavDabral11/Mongodb_Commands
 
 Reference for installation of mongodb :- https://youtu.be/HSIh8UswVVY?si=OHetSWrA6k9zxiV9 
 
+Status Code :- https://umbraco.com/knowledge-base/http-status-codes/
+ 
+
 sudo dpkg -i mongodb-org-server_8.0.4_amd64.deb [mongodb download file from mongodb offical website]
