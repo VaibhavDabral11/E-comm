@@ -1,0 +1,16 @@
+--------------MongoDB--Start-----Command--------
+sudo systemctl status
+sudo systemctl status mongod
+sudo systemctl start mongod
+sudo systemctl status  mongod
+
+------------------------------------------------
+https://github.com/VaibhavDabral11/ticketing-tool-backend/tree/master
+
+mongodb Helper document :- https://www.javatpoint.com/mongodb-query-modifiers
+
+mongodb github document :- https://github.com/VaibhavDabral11/Mongodb_Commands
+
+Reference for installation of mongodb :- https://youtu.be/HSIh8UswVVY?si=OHetSWrA6k9zxiV9 
+
+sudo dpkg -i mongodb-org-server_8.0.4_amd64.deb [mongodb download file from mongodb offical website]

@@ -1,5 +1,9 @@
-import { UserModel } from "../../models/users.js";
+import { UserModel } from "../../models/schema.js";
 import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
+dotenv.config();
+
 export const createUser = async (req, res) => {
   try {
     const { name, email, password, phone, roleId } = req.body;
@@ -34,12 +38,20 @@ export const createUser = async (req, res) => {
         roleId,
         Timestamp: "2025-01-26T12:34:56.789Z",
       });
-      const createUser = await newUser.save();
-      // create a jwt token and according to jwt token update user
+      const User = await newUser.save();
+
+      const token = jwt.sign(
+        { userId: createUser.id },
+        process.env.JWT_SECRET || "SECRET_KEY",
+        { algorithm: "HS256", subject: String(createUser.id), expiresIn: "1d" }
+      );
       res.json({
         status: 201,
         message: "User created successfully",
-        data: { createUser },
+        data: {
+          token,
+          User,
+        },
       });
     }
   } catch (error) {
