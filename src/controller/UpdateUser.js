@@ -3,7 +3,6 @@ import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 import bcrypt from "bcryptjs";
 import { mongoose } from "mongoose";
-import { ObjectId } from "mongodb";
 dotenv.config();
 
 export const updateUser = async (req, res) => {

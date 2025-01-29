@@ -17,3 +17,20 @@ Status Code :- https://umbraco.com/knowledge-base/http-status-codes/
  
 
 sudo dpkg -i mongodb-org-server_8.0.4_amd64.deb [mongodb download file from mongodb offical website]
+
+--------------Update User Payload-------------
+{
+    "name": "randttvrom Jain",
+    "email": "randttvromjain1@gmail.com",
+    "password": "Ecrovmttm@123",
+    "phone": 1275567899
+}
+
+-----------------Create User Payload-----------
+{
+    "name": "abcdef Jain",
+    "email": "bbcdefjain1@gmail.com",
+    "password": "Edefcomm@123",
+    "phone": 1234569980,
+    "roleId": 1
+}
