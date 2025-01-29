@@ -16,6 +16,7 @@ const RoleSchema = new mongoose.Schema({
   premission: { type: Boolean, required: true },
   timestamp: { type: String, required: true },
 });
+//role: { type: mongoose.Schema.Types.ObjectId, ref: "Role" },
 // Create the model
 export const UserModel = mongoose.model("User", UserSchema);
 export const Role = mongoose.model("Role", RoleSchema);
